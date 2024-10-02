@@ -27,20 +27,16 @@ public class Estudiante
     @Column(name = "notaMedia", nullable = false)
     private float notaMedia;
 
-    //esta es la parte de la tabla compuesta
+    // Esta es la parte de la tabla compuesta
     @ManyToOne // Relación Many-to-One con Curso
     @JoinColumn(name = "curso_id", nullable = false) // Foreign Key
     private Curso curso;
 
     // Constructor vacío
-    public Estudiante()
-    {
-
-    }
+    public Estudiante() {}
 
     // Constructor
-    public Estudiante(Long id, String nombre, String apellido, String dni, int telefono, float notaMedia, Curso curso)
-    {
+    public Estudiante(Long id, String nombre, String apellido, String dni, int telefono, float notaMedia, Curso curso) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,5 +44,63 @@ public class Estudiante
         this.telefono = telefono;
         this.notaMedia = notaMedia;
         this.curso = curso; // Asignación del curso
+    }
+
+    // Getters y Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public float getNotaMedia() {
+        return notaMedia;
+    }
+
+    public void setNotaMedia(float notaMedia) {
+        this.notaMedia = notaMedia;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 }

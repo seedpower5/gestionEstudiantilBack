@@ -35,15 +35,12 @@ public class Curso
     @Column(name = "fechaFinal", nullable = false)
     private LocalDate fechaFinal;
 
-    //esta es la parte de tabla compuesta
+    // Esta es la parte de tabla compuesta
     @OneToMany(mappedBy = "curso") // Relación One-to-Many con Estudiante
     private List<Estudiante> estudiantes;
 
     // Constructor vacío
-    public Curso()
-    {
-
-    }
+    public Curso() {}
 
     // Constructor
     public Curso(Long id, String nombreCurso, float duracion, String profesor, String descripcion, LocalDate fechaInicio, LocalDate fechaFinal)
@@ -55,5 +52,71 @@ public class Curso
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFinal = fechaFinal;
+    }
+
+    // Getters y Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombreCurso() {
+        return nombreCurso;
+    }
+
+    public void setNombreCurso(String nombreCurso) {
+        this.nombreCurso = nombreCurso;
+    }
+
+    public float getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(float duracion) {
+        this.duracion = duracion;
+    }
+
+    public String getProfesor() {
+        return profesor;
+    }
+
+    public void setProfesor(String profesor) {
+        this.profesor = profesor;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public LocalDate getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public LocalDate getFechaFinal() {
+        return fechaFinal;
+    }
+
+    public void setFechaFinal(LocalDate fechaFinal) {
+        this.fechaFinal = fechaFinal;
+    }
+
+    public List<Estudiante> getEstudiantes() {
+        return estudiantes;
+    }
+
+    public void setEstudiantes(List<Estudiante> estudiantes) {
+        this.estudiantes = estudiantes;
     }
 }

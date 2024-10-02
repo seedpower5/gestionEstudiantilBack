@@ -5,9 +5,10 @@ import com.jorge.gestionEstudiantilBack.excepciones.EstudianteNoEncontradoExcept
 import com.jorge.gestionEstudiantilBack.modelo.Estudiante;
 import com.jorge.gestionEstudiantilBack.repositorio.EstudianteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class EstudianteServicio
 {
     private final EstudianteRepositorio estudianteRepositorio;
