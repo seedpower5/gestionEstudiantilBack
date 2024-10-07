@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController // Indica que esta clase es un controlador REST
 @RequestMapping("/api/cursos") // Mapeo base para las solicitudes relacionadas con cursos
+@CrossOrigin(origins = {"http://localhost", "http://localhost:4200", "http://frontend-service", "http://127.0.0.1"})
 public class CursoControlador
 {
 
@@ -24,7 +25,7 @@ public class CursoControlador
     }
 
     // Método para listar todos los cursos
-    @GetMapping // Obtener todos los cursos
+    @GetMapping(produces = "application/json") // Obtener todos los cursos
     public List<Curso> listarCursos()
     {
         return cursoServicio.obtenerTodosLosCursos();

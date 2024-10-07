@@ -1,5 +1,6 @@
 package com.jorge.gestionEstudiantilBack.modelo;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -7,7 +8,6 @@ import lombok.Data;
 @Data // Genera getters, setters, toString, equals y hashCode
 public class Estudiante
 {
-    // Atributos de la clase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -27,15 +27,16 @@ public class Estudiante
     @Column(name = "notaMedia", nullable = false)
     private float notaMedia;
 
-    // Esta es la parte de la tabla compuesta
-    @ManyToOne // Relación Many-to-One con Curso
+    // Relación Many-to-One con Curso
+    @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false) // Foreign Key
+    @JsonBackReference // Evita la serialización recursiva del curso
     private Curso curso;
 
     // Constructor vacío
     public Estudiante() {}
 
-    // Constructor
+    // Constructor con parámetros
     public Estudiante(Long id, String nombre, String apellido, String dni, int telefono, float notaMedia, Curso curso) {
         this.id = id;
         this.nombre = nombre;
@@ -46,61 +47,5 @@ public class Estudiante
         this.curso = curso; // Asignación del curso
     }
 
-    // Getters y Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
-    public int getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
-    }
-
-    public float getNotaMedia() {
-        return notaMedia;
-    }
-
-    public void setNotaMedia(float notaMedia) {
-        this.notaMedia = notaMedia;
-    }
-
-    public Curso getCurso() {
-        return curso;
-    }
-
-    public void setCurso(Curso curso) {
-        this.curso = curso;
-    }
+    // Getters y Setters adicionales (omitidos por Lombok)
 }

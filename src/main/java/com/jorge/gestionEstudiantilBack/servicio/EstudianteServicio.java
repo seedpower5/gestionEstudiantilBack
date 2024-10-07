@@ -8,38 +8,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class EstudianteServicio
-{
+public class EstudianteServicio {
     private final EstudianteRepositorio estudianteRepositorio;
 
     @Autowired
-    public EstudianteServicio(EstudianteRepositorio estudianteRepositorio)
-    {
-        this.estudianteRepositorio= estudianteRepositorio;
+    public EstudianteServicio(EstudianteRepositorio estudianteRepositorio) {
+        this.estudianteRepositorio = estudianteRepositorio;
     }
-    //obtener todos los estudiantes
-    public List<Estudiante> obtenerTodosLosEstudiantes()
-    {
-        return  estudianteRepositorio.findAll();
+
+    // Obtener todos los estudiantes
+    public List<Estudiante> obtenerTodosLosEstudiantes() {
+        return estudianteRepositorio.findAll();
     }
-    //agregar nuevo estudiante
-    public Estudiante agregarEstudiante(Estudiante estudiante)
-    {
-        return  estudianteRepositorio.save(estudiante);
+
+    // Agregar nuevo estudiante
+    public Estudiante agregarEstudiante(Estudiante estudiante) {
+        return estudianteRepositorio.save(estudiante);
     }
-    //eliminar estudiante por id
-    public void  eliminarEstudiante(Long id)
-    {
-        if (!estudianteRepositorio.existsById(id))
-        {
-            throw new EstudianteNoEncontradoException("estudiante no encontrado con id: "+id);
+
+    // Eliminar estudiante por ID
+    public void eliminarEstudiante(Long id) {
+        if (!estudianteRepositorio.existsById(id)) {
+            throw new EstudianteNoEncontradoException("Estudiante no encontrado con ID: " + id);
         }
         estudianteRepositorio.deleteById(id);
     }
-    public Estudiante obtenerEstudiantePorId(Long id)
-    {
+
+    // Obtener estudiante por ID
+    public Estudiante obtenerEstudiantePorId(Long id) {
         return estudianteRepositorio.findById(id)
-                .orElseThrow(() -> new EstudianteNoEncontradoException("estudiante  no encontrado con id: " + id));
+                .orElseThrow(() -> new EstudianteNoEncontradoException("Estudiante no encontrado con ID: " + id));
+    }
+
+    // **Nuevo método para obtener estudiantes por ID de curso**
+    public List<Estudiante> obtenerEstudiantesPorCurso(Long cursoId) {
+        return estudianteRepositorio.findByCursoId(cursoId); // Este método debe existir en el repositorio
     }
 }

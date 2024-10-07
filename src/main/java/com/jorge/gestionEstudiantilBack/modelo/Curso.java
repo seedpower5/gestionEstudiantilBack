@@ -1,10 +1,8 @@
 package com.jorge.gestionEstudiantilBack.modelo;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -12,7 +10,6 @@ import java.util.List;
 @Data // Genera getters, setters, toString, equals y hashCode
 public class Curso
 {
-    // Atributos de la clase
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,14 +32,15 @@ public class Curso
     @Column(name = "fechaFinal", nullable = false)
     private LocalDate fechaFinal;
 
-    // Esta es la parte de tabla compuesta
-    @OneToMany(mappedBy = "curso") // Relación One-to-Many con Estudiante
+    // Relación One-to-Many con Estudiante
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference // Controla la serialización de los estudiantes
     private List<Estudiante> estudiantes;
 
     // Constructor vacío
     public Curso() {}
 
-    // Constructor
+    // Constructor con parámetros
     public Curso(Long id, String nombreCurso, float duracion, String profesor, String descripcion, LocalDate fechaInicio, LocalDate fechaFinal)
     {
         this.id = id;
@@ -54,69 +52,5 @@ public class Curso
         this.fechaFinal = fechaFinal;
     }
 
-    // Getters y Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombreCurso() {
-        return nombreCurso;
-    }
-
-    public void setNombreCurso(String nombreCurso) {
-        this.nombreCurso = nombreCurso;
-    }
-
-    public float getDuracion() {
-        return duracion;
-    }
-
-    public void setDuracion(float duracion) {
-        this.duracion = duracion;
-    }
-
-    public String getProfesor() {
-        return profesor;
-    }
-
-    public void setProfesor(String profesor) {
-        this.profesor = profesor;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
-    }
-
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
-    }
-
-    public LocalDate getFechaFinal() {
-        return fechaFinal;
-    }
-
-    public void setFechaFinal(LocalDate fechaFinal) {
-        this.fechaFinal = fechaFinal;
-    }
-
-    public List<Estudiante> getEstudiantes() {
-        return estudiantes;
-    }
-
-    public void setEstudiantes(List<Estudiante> estudiantes) {
-        this.estudiantes = estudiantes;
-    }
+    // Getters y Setters adicionales (omitidos por Lombok)
 }
