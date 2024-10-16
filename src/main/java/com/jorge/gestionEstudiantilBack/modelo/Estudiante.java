@@ -22,7 +22,7 @@ public class Estudiante
     private String dni;
 
     @Column(name = "telefono", length = 60, nullable = false)
-    private int telefono;
+    private String telefono;
 
     @Column(name = "notaMedia", nullable = false)
     private float notaMedia;
@@ -37,7 +37,7 @@ public class Estudiante
     public Estudiante() {}
 
     // Constructor con parámetros
-    public Estudiante(Long id, String nombre, String apellido, String dni, int telefono, float notaMedia, Curso curso) {
+    public Estudiante(Long id, String nombre, String apellido, String dni, String telefono, float notaMedia, Curso curso) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;

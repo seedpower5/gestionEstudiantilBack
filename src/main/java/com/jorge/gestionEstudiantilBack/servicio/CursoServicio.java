@@ -41,4 +41,9 @@ public class CursoServicio {
         return cursoRepositorio.findById(id)
                 .orElseThrow(() -> new CursoNoEncontradoException("Curso no encontrado con id: " + id));
     }
+
+    // Verificar si un curso existe por ID
+    public boolean existsById(Long id) {
+        return cursoRepositorio.existsById(id);
+    }
 }
