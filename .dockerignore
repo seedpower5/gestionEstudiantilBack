@@ -1,0 +1,6 @@
+# Ignorar archivos innecesarios
+target/
+*.log
+*.class
+*.iml
+.idea/
